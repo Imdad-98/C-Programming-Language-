@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> // Needed for strcspn
+
+#define NUM_CANDIDATES 6
+#define INFO_LENGTH 100
+
+int main() {
+    char candidate01[INFO_LENGTH];
+    char candidate02[INFO_LENGTH];
+    char candidate03[INFO_LENGTH];
+    char candidate04[INFO_LENGTH];
+    char candidate05[INFO_LENGTH];
+    char candidate06[INFO_LENGTH];
+
+    char *member_info[NUM_CANDIDATES] = {
+        candidate01, candidate02, candidate03,
+        candidate04, candidate05, candidate06
+    };
+
+    int i = 0;
+
+    printf("Enter basic details for each of the six candidates:\n");
+
+    while (i < NUM_CANDIDATES) {
+        printf("Candidate %02d: ", i + 1);
+        fgets(member_info[i], INFO_LENGTH, stdin);
+        member_info[i][strcspn(member_info[i], "\n")] = '\0'; // Remove newline
+        i++;
+    }
+
+    printf("\nFinal Audition Candidate List:\n");
+    for (i = 0; i < NUM_CANDIDATES; i++) {
+        printf("Candidate %02d: %s\n", i + 1, member_info[i]);
+    }
+
+    return 0;
+}
